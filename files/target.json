@@ -1,0 +1,85 @@
+{
+	"xing": {
+		"link": "http://xingnewj6m4qytljhfwemngm7r7rogrindbq7wrfeepejgxc3bwci7qd.onion/",
+		"scrape_class": {
+			"tag": "test",
+			"class": "testing"
+			}, 
+		"title": {
+			"class": "test",
+			"val": "testing"
+			}, 
+		"desc": {
+			"class": "test",
+			"val": "testing"
+			}
+	},
+	"jvda": {
+		"link": "http://jvdamsif53dqjycuozlaye2s47p7xij4x6hzwzwhzrqmv36gkyzohhqd.onion/",
+		"scrape_class": {
+			"tag": "div",
+			"class": "col-6 p-0"
+			}, 
+		"title": {
+			"class": "div",
+			"val": "row w-100 m-0 text-title justify-content-between text-truncate"
+			}, 
+		"desc": {
+			"class": "div",
+			"val": "descript-block text-break descript-block-less"
+			}
+	},
+	"tx54": {
+		"link": "http://tx54ngq5jfwpxotnauldeh7tvm2gr7pltg4obm7ww4kedrmv2lfh4dyd.onion/",
+		"scrape_class": {
+			"tag": "div",
+			"class": "col-md-4 mt-4"
+			}, 
+		"title": {
+			"class": "h5",
+			"val": "card-title"
+			}, 
+		"desc": {
+			"class": "p",
+			"val": "card-text"
+			}
+	},
+	"rnsm": {
+		"link": "http://rnsm777cdsjrsdlbs4v5qoeppu3px6sb2igmh53jzrx7ipcrbjz5b2ad.onion/",
+		"scrape_class": {
+			"tag": "div",
+			"class": "col-md-10"
+			}, 
+		"title": {
+			"class": "h5",
+			"val": "card-title"
+			}, 
+		"desc": {
+			"class": "p",
+			"val": "card-text"
+			},
+		"date": {
+			"class": "p",
+			"val": "card-text mt-3 text-secondary"
+			}
+	},
+	"3kp6": {
+		"link": "http://3kp6j22pz3zkv76yutctosa6djpj4yib2icvdqxucdaxxedumhqicpad.onion/",
+		"scrape_class": {
+			"tag": "div",
+			"class": "article-type-list group"
+			}, 
+		"title": {
+			"class": "h2",
+			"val": "type-list-title"
+			}, 
+		"desc": {
+			"class": "div",
+			"val": "type-list-excerpt"
+			},
+		"date": {
+			"class": "div",
+			"val": "type-list-date"
+			}
+	}
+}
