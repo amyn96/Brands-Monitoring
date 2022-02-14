@@ -64,10 +64,6 @@ while i > 0 :
 		date_tag = "missing"
 		date_class = "missing"	
 	
-	## print output
-	print("____________________________________________________________________________________________________________________\n")
-	print("link : " + link)
-	
 	## try to check whether the target link is active or not
 	try :
 		ses = session.get(link)
@@ -75,18 +71,10 @@ while i > 0 :
 		## Using beautifulsoup to get the website content into a nice format
 		soup = BeautifulSoup(ses.content, 'html.parser')
 		
-		print("\nScrapping..\n")
-		time.sleep(3)
-		
 		## try to check scrapping process has error or not
 		try :
 			## scrap for each card section
 			scrap = soup.find_all(scrap_tag, scrap_class)
-			
-			print("Done Scraping!\n")
-			time.sleep(1)
-			
-			print("filter result : \n")
 			
 			## save name by date of scrap
 			now = datetime.now()
@@ -107,21 +95,12 @@ while i > 0 :
 				## checking whether the details is Nonetype or not
 				if(title_element is not None):
 					title = title_element.text.strip()
-					print("Title : " + title)
-				else :
-					print("Title : No Title\n")
 				
 				if(desc_element is not None):
 					desc = desc_element.text.strip()
-					print("Description : " + desc)
-				else :
-					print("Description : No Description\n")
 					
 				if(date_element is not None):
 					date = date_element.text.strip()
-					print("Date : " + date + "\n\n")
-				else :
-					print("Date : No Date\n\n")
 				
 				## save scrape result into json
 				scrape_detail = {
@@ -137,16 +116,12 @@ while i > 0 :
 		    			json.dump(res, json_file)
 		    			
 		except Exception as e:
-			print("\n****************************************************************************************\n\nThere's an error : ")
 			print(e)
-			print("\n****************************************************************************************\n")
 			
 		i -= 1
 	
 	except requests.exceptions.RequestException as e:
-		print("\n****************************************************************************************\n\nThere's an error : ")
 		print(e)
-		print("\n****************************************************************************************\n")
 		
 		i -= 1
 
