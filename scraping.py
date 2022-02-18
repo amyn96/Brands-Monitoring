@@ -3,8 +3,8 @@ import requests
 import time
 from datetime import datetime
 import socks
-import xmltojson
 import json
+import subprocess
 from bs4 import BeautifulSoup
 
 ## proxies
@@ -26,7 +26,7 @@ session = requests.Session()
 session.proxies.update(proxies) 
 
 ## load target detail from target json
-filters = open('files/target.json')
+filters = open('/home/afiq/intern/Brands-Monitoring/files/target.json')
 data = json.load(filters)
 data_size = len(data)
 i = data_size
@@ -71,10 +71,16 @@ while i > 0 :
 		## Using beautifulsoup to get the website content into a nice format
 		soup = BeautifulSoup(ses.content, 'html.parser')
 		
+		print("\nScrapping..\n")
+		time.sleep(3)
+		
 		## try to check scrapping process has error or not
 		try :
 			## scrap for each card section
 			scrap = soup.find_all(scrap_tag, scrap_class)
+			
+			print("Done Scraping!\n")
+			time.sleep(1)
 			
 			## save name by date of scrap
 			now = datetime.now()
@@ -82,8 +88,10 @@ while i > 0 :
 			
 			scrape_detail = {}
 			res = []
-			scrape_detail={'link':link}
+			scrape_detail={'link':link, 'detail':""}
 			res.append(scrape_detail)
+			
+			result_name = '/home/afiq/intern/Brands-Monitoring/json/result_' + str(today) + '.json'
 			
 			## loop to filter required details on each card section
 			for scraps in scrap:
@@ -95,33 +103,44 @@ while i > 0 :
 				## checking whether the details is Nonetype or not
 				if(title_element is not None):
 					title = title_element.text.strip()
+				else :
+					title = "none"
 				
 				if(desc_element is not None):
 					desc = desc_element.text.strip()
+				else :
+					desc = "none"
 					
 				if(date_element is not None):
 					date = date_element.text.strip()
+				else :
+					date = "none"
 				
 				## save scrape result into json
-				scrape_detail = {
+				scrape_detail['detail'] = {
 					'title': title,
-					'desc': desc
+					'desc': desc,
+					'date': date
 				}
+				res.append(scrape_detail)
 				
-				res.append(scrape_detail)	
-				
-			result_name = 'json/result_' + str(today) + '.json'
-				
-			with open(result_name, 'a') as json_file:
-		    			json.dump(res, json_file)
+				with open(result_name, 'w') as json_file:
+		    			json.dump(scrape_detail, json_file)	
+		    		
+				subprocess.run(['sudo', '/home/afiq/intern/Brands-Monitoring/bash.sh'])
 		    			
+					
 		except Exception as e:
+			print("\n****************************************************************************************\n\nThere's an error : ")
 			print(e)
+			print("\n****************************************************************************************\n")
 			
 		i -= 1
 	
 	except requests.exceptions.RequestException as e:
+		print("\n****************************************************************************************\n\nThere's an error : ")
 		print(e)
+		print("\n****************************************************************************************\n")
 		
 		i -= 1
 
